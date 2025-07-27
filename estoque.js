@@ -112,4 +112,29 @@ function listarProdutos() {
   exibirMenu();
 }
 
+function atualizarQuantidade() {
+  listagemProdutos();
+
+  rl.question(
+    "Informe o índice do produto que deseja atualizar a quantidade: ",
+    (indice) => {
+      i = parseInt(indice) - 1;
+      if (isNaN(i) || i < 0 || i >= produtos.length) {
+        console.log("\nFavor informar um índice válido.\n");
+        return atualizarQuantidade();
+      }
+      rl.question("Informe a nova quantidade: ", (novaQuantidade) => {
+        novaQuantidadeFormatada = parseInt(novaQuantidade);
+        if (isNaN(novaQuantidadeFormatada) || novaQuantidadeFormatada < 0) {
+          console.log("\nInforme uma quantidade válida.\n");
+          return atualizarQuantidade();
+        }
+        produtos[i].quantidade = novaQuantidadeFormatada;
+        console.log("\nQuantidade atualizada com sucesso!\n");
+        exibirMenu();
+      });
+    }
+  );
+}
+
 exibirMenu();
