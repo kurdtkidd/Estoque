@@ -53,13 +53,13 @@ function exibirMenu() {
       case 9:
         console.log("\nSaindo do sistema...\n");
         rl.close();
+        break;
       default:
         console.log("\nInforme uma opção válida.\n");
         exibirMenu();
     }
   });
 }
-exibirMenu();
 
 function adicionarProduto() {
   console.log("\n======= ADICIONAR PRODUTO =======\n");
@@ -91,3 +91,25 @@ function adicionarProduto() {
     });
   });
 }
+
+function listagemProdutos() {
+  if (produtos.length === 0) {
+    console.log("\nNão existem produtos cadastrados para listar.\n");
+    return exibirMenu();
+  }
+  console.log("\n======= PRODUTOS CADASTRADOS =======\n");
+  produtos.forEach((produto, index) => {
+    console.log(
+      `Índice: ${index + 1}\nNome: ${produto.nome}\nCategoria: ${
+        produto.categoria
+      }\nValor: ${produto.valor}\nQuantidade: ${produto.quantidade}\n`
+    );
+  });
+}
+
+function listarProdutos() {
+  listagemProdutos();
+  exibirMenu();
+}
+
+exibirMenu();
