@@ -5,10 +5,10 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-let estoque = [];
+let produtos = [];
 
 function exibirMenu() {
-  console.log("======= SISTEMA DE ESTOQUE =======\n");
+  console.log("\n======= SISTEMA DE ESTOQUE =======\n");
 
   console.log("1 - ADICIONAR PRODUTO AO ESTOQUE");
   console.log("2 - LISTAR PRODUTOS");
@@ -60,3 +60,34 @@ function exibirMenu() {
   });
 }
 exibirMenu();
+
+function adicionarProduto() {
+  console.log("\n======= ADICIONAR PRODUTO =======\n");
+
+  rl.question("Informe o nome do produto: ", (nome) => {
+    rl.question("Informe a categoria do produto: ", (categoria) => {
+      rl.question("Informe o valor do produto: ", (valor) => {
+        valorFormatado = parseFloat(valor);
+        if (isNaN(valorFormatado) || valorFormatado < 0) {
+          console.log("\nValor inválido.\n");
+          return adicionarProduto();
+        }
+        rl.question("Informe a quantidade de produtos: ", (quantidade) => {
+          quantidadeFormatada = parseInt(quantidade);
+          if (isNaN(quantidadeFormatada) || quantidadeFormatada < 0) {
+            console.log("\nQuantidade inválida.\n");
+            return adicionarProduto();
+          }
+          produtos.push({
+            nome: nome,
+            categoria: categoria,
+            valor: valorFormatado,
+            quantidade: quantidadeFormatada,
+          });
+          console.log("\nProduto adicionado com sucesso!");
+          exibirMenu();
+        });
+      });
+    });
+  });
+}
