@@ -67,7 +67,7 @@ function adicionarProduto() {
   rl.question("Informe o nome do produto: ", (nome) => {
     rl.question("Informe a categoria do produto: ", (categoria) => {
       rl.question("Informe o valor do produto: ", (valor) => {
-        valorFormatado = parseFloat(valor);
+        valorFormatado = parseFloat(valor.replace(",", "."));
         if (isNaN(valorFormatado) || valorFormatado < 0) {
           console.log("\nValor inválido.\n");
           return adicionarProduto();
@@ -102,7 +102,9 @@ function listagemProdutos() {
     console.log(
       `Índice: ${index + 1}\nNome: ${produto.nome}\nCategoria: ${
         produto.categoria
-      }\nValor: ${produto.valor}\nQuantidade: ${produto.quantidade}\n`
+      }\nValor: R$${produto.valor.toFixed(2)}\nQuantidade: ${
+        produto.quantidade
+      }\n`
     );
   });
 }
@@ -165,6 +167,22 @@ function verificarEstoque() {
     });
   }
 
+  exibirMenu();
+}
+
+function calcularTotal() {
+  if (produtos.length === 0) {
+    console.log("\nNão há produtos no estoque para calcular o total.\n");
+    return exibirMenu();
+  }
+
+  let total = 0;
+
+  produtos.forEach((produto) => {
+    total += produto.valor * produto.quantidade;
+  });
+
+  console.log(`\nValor total do estoque: R$ ${total.toFixed(2)}\n`);
   exibirMenu();
 }
 
