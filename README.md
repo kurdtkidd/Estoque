@@ -1,1 +1,1 @@
-# Estoque
+Programa para gerenciamento de estoque.
