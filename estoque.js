@@ -186,4 +186,66 @@ function calcularTotal() {
   exibirMenu();
 }
 
+function buscarPorNome() {
+  rl.question(
+    "\nDigite o nome do produto que deseja buscar: ",
+    (nomeProduto) => {
+      const resultados = produtos.filter((produto) =>
+        produto.nome.toLowerCase().includes(nomeProduto.toLowerCase())
+      );
+
+      if (resultados.length === 0) {
+        console.log(
+          `\nNenhum produto encontrado com o nome "${nomeProduto}".\n`
+        );
+      } else {
+        console.log(`\n======= RESULTADOS PARA: "${nomeProduto}" =======\n`);
+        resultados.forEach((produto) => {
+          console.log(
+            `Nome: ${produto.nome}\nCategoria: ${
+              produto.categoria
+            }\nValor: R$${produto.valor.toFixed(2)}\nQuantidade: ${
+              produto.quantidade
+            }\n`
+          );
+        });
+      }
+
+      exibirMenu();
+    }
+  );
+}
+
+function buscarPorCategoria() {
+  rl.question(
+    "\nDigite a categoria que deseja buscar: ",
+    (categoriaProduto) => {
+      const resultados = produtos.filter((produto) =>
+        produto.categoria.toLowerCase().includes(categoriaProduto.toLowerCase())
+      );
+
+      if (resultados.length === 0) {
+        console.log(
+          `\nNenhum produto encontrado na categoria "${categoriaProduto}".\n`
+        );
+      } else {
+        console.log(
+          `\n======= PRODUTOS NA CATEGORIA: "${categoriaProduto}" =======\n`
+        );
+        resultados.forEach((produto) => {
+          console.log(
+            `Nome: ${produto.nome}\nCategoria: ${
+              produto.categoria
+            }\nValor: R$${produto.valor.toFixed(2)}\nQuantidade: ${
+              produto.quantidade
+            }\n`
+          );
+        });
+      }
+
+      exibirMenu();
+    }
+  );
+}
+
 exibirMenu();
