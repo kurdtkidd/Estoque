@@ -137,4 +137,18 @@ function atualizarQuantidade() {
   );
 }
 
+function removerProduto() {
+  listagemProdutos();
+  rl.question("Informe o índice do produto que deseja remover: ", (indice) => {
+    i = parseInt(indice) - 1;
+    if (isNaN(i) || i < 0 || i >= produtos.length) {
+      console.log("\nFavor informar um índice válido.\n");
+      return removerProduto();
+    }
+    const removido = produtos.splice(i, 1)[0];
+    console.log(`\nO produto: ${removido.nome} foi removido com sucesso!\n`);
+    exibirMenu();
+  });
+}
+
 exibirMenu();
