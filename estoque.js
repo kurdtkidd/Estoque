@@ -151,4 +151,21 @@ function removerProduto() {
   });
 }
 
+function verificarEstoque() {
+  const produtosBaixoEstoque = produtos.filter(
+    (produto) => produto.quantidade < 5
+  );
+
+  if (produtosBaixoEstoque.length === 0) {
+    console.log("\nNão há produtos com menos de 5 unidades no estoque.\n");
+  } else {
+    console.log("\n======= PRODUTOS COM BAIXO ESTOQUE =======\n");
+    produtosBaixoEstoque.forEach((produto) => {
+      console.log(`Nome: ${produto.nome}\nQuantidade: ${produto.quantidade}\n`);
+    });
+  }
+
+  exibirMenu();
+}
+
 exibirMenu();
