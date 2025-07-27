@@ -1,1 +1,1 @@
-Programa para gerenciamento de estoque.
+Programa para gerenciamento de estoque. Permite adicionar produtos ao estoque, informado o nome, a categoria, o preço e a quantidade. Lista todos os produtos cadastrados, permite atualizar quantidade em estoque, remover um produto, listar produtos com menos de 5 no estoque, calcular o valor total do estoque, buscar produto por nome e por categoria.
